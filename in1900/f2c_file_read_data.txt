@@ -1,0 +1,4 @@
+Temperature data
+----------------
+
+Fahreinheit degrees: 67.2
