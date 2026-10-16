@@ -49,7 +49,7 @@ for j,x1 in enumerate(x1s):
     axes[j][2].set_xlabel('t [s]')
     axes[j][2].set_ylabel('x [m]')
 
-    
+
 plt.show()
 
 #--------------- k
@@ -96,20 +96,14 @@ N = lambda x: (k*h*(1-l_0/np.sqrt(x**2 + h**2))+m*g)
 R = lambda x,v: -np.sign(v)*my*abs(N(x))
 a = lambda x,v: (-k*x*(1-l_0/np.sqrt(x**2 + h**2)) + R(x,v))    /m
 
-W_list = np.zeros_like(t)
 for i in range(len(t)-1):
     a_list[i] = a(x_list[i],v_list[i])
     v_list[i+1] = v(v_list[i],dt,a_list[i])
     x_list[i+1] = x(x_list[i],dt,v_list[i+1])
     dx = x_list[i+1]-x_list[i]
-    W_list[i+1] = W_list[i] + R(x_list[i+1],v_list[i+1]) * dx
 
 E_k = 1/2*m*v_list**2
-print(W_list)
-E_p = (max(E_k)+W_list)-E_k
 
-fig, ax = plt.subplots(3, 1)
-ax[0].plot(t, E_k)
-ax[1].plot(t, E_p)
-ax[2].plot(t,x_list)
+
+plt.plot(x_list, E_k)
 plt.show()
