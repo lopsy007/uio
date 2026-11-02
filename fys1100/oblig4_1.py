@@ -74,10 +74,16 @@ for i in range(len(t)-1):
     v_list[i+1] = v(v_list[i],dt,a_list[i])
     x_list[i+1] = x(x_list[i],dt,v_list[i+1])
 
-fig, ax = plt.subplots(3, 1)
-ax[0].plot(t,a_list)
-ax[1].plot(t,v_list)
-ax[2].plot(t,x_list)
+fig, ax = plt.subplots(2, 1, sharex=True)
+
+ax[0].plot(t,v_list)
+ax[0].set_ylabel("v [m/s)")
+
+ax[1].plot(t,x_list)
+ax[1].set_ylabel("x [m]")
+ax[1].set_xlabel("t [s)")
+
+
 plt.show()
 
 #---------------- l
@@ -106,4 +112,6 @@ E_k = 1/2*m*v_list**2
 
 
 plt.plot(x_list, E_k)
+plt.xlabel("x [m]")
+plt.ylabel("E_k [J]")
 plt.show()
