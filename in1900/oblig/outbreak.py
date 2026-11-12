@@ -35,3 +35,5 @@ if __name__=="__main__":
     print(f"{'t_lock':<20}{'max infected':^20}{'ventilators':>20}")
     for i, t_lock in enumerate(t_locks):
         print(f"{t_lock:<20}{int(maxs[i]):^20}{int(ventilator[i]):>20}")
+
+# Vi ser at 7 dager utgjør veldig stor forskjell. Hvis man starter på dag 19 er det kun behov for 103 ventilatorer, men hvis man starter dag 33 trengs det 1422, altså dobbelt så mye som man hadde tilgjengelig!

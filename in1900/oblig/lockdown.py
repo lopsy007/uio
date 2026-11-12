@@ -58,3 +58,6 @@ if __name__ == "__main__":
     t, u = solve_SEIR(model, T=600, N = 600,
                       S_0=5.5e6, E2_0=100)
     plot_SEIR(t, u, components = ['I','Ia'])
+
+# Vi forventer større bølger enn vi får, så modellen mangler nok en eller flere forsterkende faktorer.
+# Et mulig eksempel er innreisende smittebærere.
