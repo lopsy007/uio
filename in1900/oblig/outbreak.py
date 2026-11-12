@@ -19,18 +19,19 @@ def test_R_to_beta():
     assert abs(expected-computed)<tol
 
 
-t_locks = [19, 26, 33, 49]
-maxs = []
-for t_lock in t_locks: 
-    beta = LockdownBeta(t_lock, R_to_beta(3.2), R_to_beta(0.5))
-    model = SEIR(beta)
-    t, u = solve_SEIR(model, T = 200, N = 400,
-                      S_0 = 5.5e6, E2_0 = 100)
-    plot_SEIR(t,u, components=['I', 'Ia'])
-    
-    maxs.append(max(list(zip(*u))[3]))
-ventilator = [0.25*0.2*maks for maks in maxs]
+if __name__=="__main__":
+    t_locks = [19, 26, 33, 49]
+    maxs = []
+    for t_lock in t_locks:
+        beta = LockdownBeta(t_lock, R_to_beta(3.2), R_to_beta(0.5))
+        model = SEIR(beta)
+        t, u = solve_SEIR(model, T = 200, N = 400,
+                          S_0 = 5.5e6, E2_0 = 100)
+        plot_SEIR(t,u, components=['I', 'Ia'])
 
-print(f"{'t_lock':<20}{'max infected':^20}{'ventilators':>20}")
-for i, t_lock in enumerate(t_locks):
-    print(f"{t_lock:<20}{int(maxs[i]):^20}{int(ventilator[i]):>20}")
+        maxs.append(max(list(zip(*u))[3]))
+    ventilator = [0.25*0.2*maks for maks in maxs]
+
+    print(f"{'t_lock':<20}{'max infected':^20}{'ventilators':>20}")
+    for i, t_lock in enumerate(t_locks):
+        print(f"{t_lock:<20}{int(maxs[i]):^20}{int(ventilator[i]):>20}")
